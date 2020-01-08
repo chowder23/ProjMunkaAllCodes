@@ -8271,11 +8271,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\benja\\source\\repos\\ProjektMunkaAPI\\ProjektMunkaAPI\\ProjektMunkaAPI.csproj",
+      "projectUniqueName": "C:\\ProjMunkaAllCodes\\ProjektMunkaAPI\\ProjektMunkaAPI\\ProjektMunkaAPI.csproj",
       "projectName": "ProjektMunkaAPI",
-      "projectPath": "C:\\Users\\benja\\source\\repos\\ProjektMunkaAPI\\ProjektMunkaAPI\\ProjektMunkaAPI.csproj",
+      "projectPath": "C:\\ProjMunkaAllCodes\\ProjektMunkaAPI\\ProjektMunkaAPI\\ProjektMunkaAPI.csproj",
       "packagesPath": "C:\\Users\\benja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\benja\\source\\repos\\ProjektMunkaAPI\\ProjektMunkaAPI\\obj\\",
+      "outputPath": "C:\\ProjMunkaAllCodes\\ProjektMunkaAPI\\ProjektMunkaAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\benja\\AppData\\Roaming\\NuGet\\NuGet.Config",
