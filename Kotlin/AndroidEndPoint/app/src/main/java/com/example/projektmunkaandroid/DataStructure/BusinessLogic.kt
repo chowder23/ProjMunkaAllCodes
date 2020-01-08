@@ -23,11 +23,12 @@ class BusinessLogic {
         val client = OkHttpClient()
         client.newCall(request).enqueue(object: Callback {
             override fun onResponse(call: Call, response: Response) {
-                val body= response?.body()?.string()
+                val body= response.body()?.string()
                 val gson = GsonBuilder().create()
                 val myType = object : TypeToken<List<ChangeRate>>(){}.type
                 changeRates =  gson.fromJson<List<ChangeRate>>(body,myType)
-                println(changeRates.toString())
+                println("Succes madafuka!")
+
             }
 
             override fun onFailure(call: Call, e: IOException) {
@@ -42,5 +43,15 @@ class BusinessLogic {
     fun GetAllChangeRate():List<ChangeRate>
     {
         return changeRates
+    }
+
+    override fun toString(): String {
+        var output =String()
+        for (changerate in changeRates)
+        {
+            output += "Name: ${changerate.ExchangerName}, Location: ${changerate.Location}, Buying Rate: ${changerate.BuyingRate} \n"
+        }
+
+        return output
     }
 }
