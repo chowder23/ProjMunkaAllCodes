@@ -1,12 +1,12 @@
 package com.example.projektmunkaandroid.DataStructure
 
-class ChangeRate(val ExchangerName:String,val Location:String,var BuyingRate:String,var SellingRate:String,val CurrencyFrom:String,val CurrencyTo:String) {
+class ChangeRate(val exchangerName:String,val location:String,var buyingRate:String,var sellingRate:String,val currencyFrom:String,val currencyTo:String) {
 
-     fun SetBuyingRate(newBuyingRate:String) {
-         BuyingRate = newBuyingRate
-     }
+    fun SetBuyingRate(newBuyingRate:String) {
+         buyingRate = newBuyingRate
+    }
 
     fun SetSellingRate(newSellingRate:String){
-        SellingRate=newSellingRate
+        sellingRate=newSellingRate
     }
 }

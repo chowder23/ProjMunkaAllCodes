@@ -19,3 +19,4 @@ C:\ProjMunkaAllCodes\ProjektMunkaAPI2\ProjektMunkaAPI2\ProjektMunkaAPI2\obj\Rele
 C:\ProjMunkaAllCodes\ProjektMunkaAPI2\ProjektMunkaAPI2\ProjektMunkaAPI2\obj\Release\netcoreapp3.0\ProjektMunkaAPI2.csproj.CopyComplete
 C:\ProjMunkaAllCodes\ProjektMunkaAPI2\ProjektMunkaAPI2\ProjektMunkaAPI2\obj\Release\netcoreapp3.0\ProjektMunkaAPI2.dll
 C:\ProjMunkaAllCodes\ProjektMunkaAPI2\ProjektMunkaAPI2\ProjektMunkaAPI2\obj\Release\netcoreapp3.0\ProjektMunkaAPI2.pdb
+C:\ProjMunkaAllCodes\ProjektMunkaAPI2\ProjektMunkaAPI2\ProjektMunkaAPI2\bin\Release\netcoreapp3.0\aws-beanstalk-tools-defaults.json

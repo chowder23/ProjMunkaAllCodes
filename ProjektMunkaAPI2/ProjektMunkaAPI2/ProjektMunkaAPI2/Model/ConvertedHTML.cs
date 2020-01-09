@@ -18,9 +18,11 @@ namespace ProjektMunkaAPI2.Model
 
         private string NormalizeString(string inputString)
         {
-            string outputstring = Regex.Replace(inputString, @"\n|\r|\t| ", "");
+            string outputstring = Regex.Replace(inputString, @"\n|\r|\t|\x20|\.", "");
 
-            return outputstring;        }
+            return outputstring;      
+        }
+
 
         public IEnumerable<ExchangeRates> ToEnumerable()
         {
