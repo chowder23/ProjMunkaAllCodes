@@ -13,20 +13,16 @@ namespace ProjektMunkaAPI2.Controllers
 
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ExchangeRateCollectorController : ControllerBase
     {
-        
 
-        private ConvertedHTML allStuff = new ConvertedHTML();
-        public IEnumerable<ExchangeRates> Index(string currencyType)
+        [HttpGet]
+        public IEnumerable<ExchangeRates> Get(string currencyType)
         {
-            ValutaValtok(currencyType);
-            return allStuff.ToEnumerable();
-        }
-
-        private void ValutaValtok(string currencyType)
-        {
+            if (currencyType == null)
+                return null;
+            ConvertedHTML allStuff = new ConvertedHTML();
             const int PAGENUMBER = 2;
             const int TDSTARTNUMBER = 7;
             const int TDJUMPNUMBER = 7;
@@ -48,6 +44,8 @@ namespace ProjektMunkaAPI2.Controllers
                     allStuff.addNewExchangeRate(nodes[i].InnerText,nodes[i+1].InnerText, nodes[i + 4].InnerText, nodes[i + 3].InnerText, currencyType, "HUF");
                 }
             }
+
+            return allStuff.ToEnumerable();
         }
     }
 }
