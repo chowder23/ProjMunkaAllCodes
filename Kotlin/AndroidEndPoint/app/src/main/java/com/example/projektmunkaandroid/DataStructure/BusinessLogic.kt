@@ -5,20 +5,67 @@ import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import okhttp3.*
 import java.io.IOException
+import okhttp3.OkHttpClient
+import java.security.cert.CertificateException
+import javax.net.ssl.*
+
 
 class BusinessLogic {
 
     private var changeRates = listOf<ChangeRate>()
+    private fun getUnsafeOkHttpClient(): OkHttpClient {
+        try {
+            // Create a trust manager that does not validate certificate chains
+            val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
+                @Throws(CertificateException::class)
+                override fun checkClientTrusted(
+                    chain: Array<java.security.cert.X509Certificate>,
+                    authType: String
+                ) {
+                }
 
+                @Throws(CertificateException::class)
+                override fun checkServerTrusted(
+                    chain: Array<java.security.cert.X509Certificate>,
+                    authType: String
+                ) {
+                }
+
+                override fun getAcceptedIssuers(): Array<java.security.cert.X509Certificate> {
+                    return arrayOf()
+                }
+            })
+
+            // Install the all-trusting trust manager
+            val sslContext = SSLContext.getInstance("SSL")
+            sslContext.init(null, trustAllCerts, java.security.SecureRandom())
+            // Create an ssl socket factory with our all-trusting manager
+            val sslSocketFactory = sslContext.socketFactory
+
+            val builder = OkHttpClient.Builder()
+            builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
+            builder.hostnameVerifier(object : HostnameVerifier {
+                override fun verify(hostname: String, session: SSLSession): Boolean {
+                    return true
+                }
+            })
+
+            return builder.build()
+        } catch (e: Exception) {
+            throw RuntimeException(e)
+        }
+
+    }
      fun APIGetRequest(CurrencyType:String):List<ChangeRate>{
         println("Trying to do it!")
 
         val url =
-            "http://projapi.eu-north-1.elasticbeanstalk.com/ExchangeRateCollector?currencyType=$CurrencyType"
+            "https://b0bdeaf9.ngrok.io/api/ExchangeRateCollector?currencyType=$CurrencyType"
 
         val request = Request.Builder().url(url).build()
 
-        val client = OkHttpClient()
+        val client = getUnsafeOkHttpClient()
+
         client.newCall(request).enqueue(object: Callback {
             override fun onResponse(call: Call, response: Response) {
                 val body= response.body()?.string()
@@ -30,6 +77,7 @@ class BusinessLogic {
             }
 
             override fun onFailure(call: Call, e: IOException) {
+                println("There is a problem sir!")
                 println(e.message)
             }
         })
